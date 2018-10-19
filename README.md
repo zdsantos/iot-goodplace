@@ -9,7 +9,7 @@ API that will be accessed by the mobile application for get contexts datas and a
 |/api/v1/users/:id|PUT|:id - user id|[User object](#user-document)|Update the user with this Id|
 |/api/v1/users/:id|DELETE|:id - user id||Delete the user with this Id|
 |/api/v1/users/:id/preferences|GET|:id - user id|[Preferences object](#preference-document)|Retrieve preferences for user with this Id|
-|/api/v1/users/:id/preferences|POST|:id - user id|[Preferences object](#preference-document)|Update preferences for user with this Id|
+|/api/v1/users/:id/preferences|POST|:id - user id<br>[Preferences object](#preference-document)|[Preferences object](#preference-document)|Update preferences for user with this Id|
 |/api/v1/rooms|POST|[Rooms object](#room-document)|[Rooms object with a Id](#room-document)|Create a new rooms|
 |/api/v1/rooms/:id|GET|:id - rooms id|[Rooms object](#room-document)|Retrieve a rooms with this Id|
 |/api/v1/rooms/:id|PUT|:id - rooms id|[Rooms object](#room-document)|Update the rooms with this Id|
