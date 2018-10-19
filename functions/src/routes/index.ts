@@ -1,12 +1,11 @@
 import * as express from 'express';
 import { V1 } from './v1';
-import { Firestore } from '@google-cloud/firestore';
 
 export class Routes {
     public express: express.Application;
-    private db: Firestore;
+    private db;
 
-    constructor(db: Firestore) {
+    constructor(db) {
         this.express = express();
         this.db = db;
         this.routes();

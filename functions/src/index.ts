@@ -5,7 +5,7 @@ import * as bodyParser from 'body-parser';
 import * as admin from 'firebase-admin';
 import { Routes } from './routes';
 
-const serviceAccount = require('/home/zdsantos/repositories/.keys/goodplace-iot.json');
+const serviceAccount = require('./../goodplace-iot.json');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),

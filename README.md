@@ -4,15 +4,16 @@ API that will be accessed by the mobile application for get contexts datas and a
 ## Endpoints
 |endpoint|method|parameters|reponse|Description|
 |-|-|-|-|-|
-|/api/v1/users|POST|[User object](#user-document)|[User object with a Id](#user-document)|Create a new user|
+|/api/v1/users|POST|[User object](#user-document)|User Id|Create a new user|
 |/api/v1/users/:id|GET|:id - user id|[User object](#user-document)|Retrieve a user with this Id|
-|/api/v1/users/:id|PUT|:id - user id|[User object](#user-document)|Update the user with this Id|
+|/api/v1/users/:id|PUT|:id - user id||Update the user with this Id|
 |/api/v1/users/:id|DELETE|:id - user id||Delete the user with this Id|
 |/api/v1/users/:id/preferences|GET|:id - user id|[Preferences object](#preference-document)|Retrieve preferences for user with this Id|
-|/api/v1/users/:id/preferences|POST|:id - user id<br>[Preferences object](#preference-document)|[Preferences object](#preference-document)|Update preferences for user with this Id|
-|/api/v1/rooms|POST|[Room object](#room-document)|[Room object with a Id](#room-document)|Create a new room|
+|/api/v1/users/:id/preferences|POST|:id - user id<br>[Preferences object](#preference-document)||Update preferences for user with this Id|
+|/api/v1/users/:id/rooms|GET|:id - user id|[List of rooms](#room-document)|Get list of rooms ordered by preferences of this user|
+|/api/v1/rooms|POST|[Room object](#room-document)|Room id|Create a new room|
 |/api/v1/rooms/:id|GET|:id - room id|[Room object](#room-document)|Retrieve a room with this Id|
-|/api/v1/rooms/:id|PUT|:id - room id|[Room object](#room-document)|Update the room with this Id|
+|/api/v1/rooms/:id|PUT|:id - room id||Update the room with this Id|
 |/api/v1/rooms/:id|DELETE|:id - room id||Delete the room with this Id|
 |/api/v1/publish|POST|[Sensor data](#sensor-data)||Publish a sensor reading|
 
@@ -54,7 +55,7 @@ API that will be accessed by the mobile application for get contexts datas and a
     "attributes": [
         "wifi", "arcondicionado", "lousa", "mesa para grupo", "mesa individual"
     ],
-    "recentReadings": {
+    "sensors": {
         "temperature": {
             "value": 27,
             "date": "2018-11-16 14:20:0000"
@@ -89,9 +90,19 @@ API that will be accessed by the mobile application for get contexts datas and a
 ### Sensor Data
 ```
 {
-    roomId: "1",
-    type: "temperature",
-    value: "27"
+	"roomId": "1",
+	"sensors": {
+		"luminosity": {
+			"value": 600
+		},
+		"noise": {
+			"value": 45
+		},
+		"noise": {
+			"value": 3
+		}
+                ...
+	}
 }
 ```
 
