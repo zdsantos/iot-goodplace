@@ -1,23 +1,24 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import * as firebaseHelper from 'firebase-functions-helper';
+import * as cors from 'cors';
 import * as express from 'express';
-import * as bodyParser from "body-parser";
+import * as bodyParser from 'body-parser';
+import Routes from './routes';
 
-admin.initializeApp(functions.config().firebase);
+// const serviceAccount = require(process.env.GOODPLACE_CREDENTIAL);
+// const serviceAccount = require('/home/zdsantos/repositories/.keys/goodplace-iot.json');
+// admin.initializeApp();
 
-const db = admin.firestore();
 const app = express();
-const main = express();
 
-main.use('/api/v1', app);
-main.use(bodyParser.json());
-main.use(bodyParser.urlencoded({ extended: false }));
+// Middlewares
+app.use(cors({ origin: true }));
+app.use(bodyParser.urlencoded({'extended':true}));
+app.use(bodyParser.json());
 
-export const webApi = functions.https.onRequest(main);
+// Routes
+app.use(Routes);
 
-app.post('/sensors', (req, res) => {
-    firebaseHelper.firestore
-        .createNewDocument(db, 'sensors', req.body);
-    res.send('Publish new sensor entry');
-})
+const api = functions.https.onRequest(app);
+
+export { api };
