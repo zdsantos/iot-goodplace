@@ -1,30 +1,34 @@
 import * as express from 'express';
-import * as admin from 'firebase-admin';
+import { Firestore } from '@google-cloud/firestore';
 
-class Publish {
+export class Publish {
     public express: express.Application;
+    private db: Firestore;
 
-    constructor() {
-        admin.initializeApp();
+    constructor(db: Firestore) {
+        this.db = db;
         this.express = express();
         this.routes();
     }
 
     private routes() : void {
         const router = express.Router();
-        const db = admin.firestore();
-
+        
         router.post('/', (req, res) => {
+            this.validateData(req.body, res);
             
-            if (req.body.roomId === undefined)
-                res.status(400).end('Property roomId is needed');
-            if (req.body.type === undefined)
-                res.status(400).end('Property type is needed');
-            if (req.body.value === undefined || isNaN(req.body.value))
-                res.status(400).end('Property value can not be ' + req.body.value);
+            const newEntry = {};
+            newEntry[req.body.type] = {
+                value: req.body.value, 
+                date: new Date()
+            }
 
-            db.collection('readings').add(req.body).then(doc => {
-                res.status(200).send(doc.id);
+            this.db.collection('rooms').doc(req.body.roomId).set({
+                recentReadings: newEntry
+            }, {
+                merge: true
+            }).then(doc => {
+                res.status(200).send(doc);
             }).catch(e => {
                 res.status(400).send(e);
             })
@@ -32,6 +36,15 @@ class Publish {
 
         this.express.use('/', router);
     }
+
+    private validateData(data, res): void {
+        if (data.roomId === undefined)
+            res.status(400).end('Property roomId is needed');
+        if (data.type === undefined)
+            res.status(400).end('Property type is needed');
+        if (data.value === undefined || isNaN(data.value))
+            res.status(400).end('Property value can not be ' + data.value);
+    }
 }
 
-export default new Publish().express;
+// export default new Publish().express;

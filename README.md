@@ -54,10 +54,19 @@ API that will be accessed by the mobile application for get contexts datas and a
     "attributes": [
         "wifi", "arcondicionado", "lousa", "mesa para grupo", "mesa individual"
     ],
-    "recentReadings":[
-        { "type": "temperature", "value": 27, "und": "C", "date": "2018-11-16 14:20:0000"},
-        { "type": "luminosity", "value": 600, "und": "X", "date": "2018-11-16 14:20:0000"},
-        { "type": "noise", "value": 15, "und": "db", "date": "2018-11-16 14:20:0000"}
+    "recentReadings": {
+        "temperature": {
+            "value": 27,
+            "date": "2018-11-16 14:20:0000"
+        },
+        "luminosity": {
+            "value": 600
+            "date": "2018-11-16 14:20:0000"
+        },
+        "noise": {
+            "value": 15
+            "date": "2018-11-16 14:20:0000"
+        }
     ]
 }
 ```
@@ -66,16 +75,13 @@ API that will be accessed by the mobile application for get contexts datas and a
 ```
 {
     "temperature": {
-        "value": 27,
-        "und": "C"
+        "value": 27
     },
     "noise": {
-        "value": 15,
-        "und": "db"
+        "value": 15
     },
     "luminosity": {
-        "value": 600,
-        "und": "X"
+        "value": 600
     }
 }
 ```

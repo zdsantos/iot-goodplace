@@ -1,12 +1,15 @@
 import * as express from 'express';
-import * as users from './users';
-import * as rooms from './rooms';
-import * as publish from './publish';
+// import { users } from './users';
+// import { rooms } from './rooms';
+import { Publish } from './publish';
+import { Firestore } from '@google-cloud/firestore';
 
-class V1 {
+export class V1 {
     public express: express.Application;
+    private db: Firestore;
 
-    constructor() {
+    constructor(db: Firestore) {
+        this.db = db;
         this.express = express();
         this.routes();
     }
@@ -14,12 +17,10 @@ class V1 {
     private routes() : void {
         const router = express.Router();
 
-        router.use('/users', users.default);
-        router.use('/rooms', rooms.default);
-        router.use('/publish', publish.default);
+        // router.use('/users', users.default);
+        // router.use('/rooms', rooms.default);
+        router.use('/publish', new Publish(this.db).express);
 
         this.express.use('/', router);
     }
 }
-
-export default new V1().express;
