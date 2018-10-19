@@ -9,11 +9,11 @@ API that will be accessed by the mobile application for get contexts datas and a
 |/api/v1/users/:id|PUT|:id - user id|[User object](#user-document)|Update the user with this Id|
 |/api/v1/users/:id|DELETE|:id - user id||Delete the user with this Id|
 |/api/v1/users/:id/preferences|GET|:id - user id|[Preferences object](#preference-document)|Retrieve preferences for user with this Id|
-|/api/v1/users/:id/preferences|POST|:id - user id|[Preferences object](#preference-document)|Update preferences for user with this Id|
-|/api/v1/rooms|POST|[Rooms object](#room-document)|[Rooms object with a Id](#room-document)|Create a new rooms|
-|/api/v1/rooms/:id|GET|:id - rooms id|[Rooms object](#room-document)|Retrieve a rooms with this Id|
-|/api/v1/rooms/:id|PUT|:id - rooms id|[Rooms object](#room-document)|Update the rooms with this Id|
-|/api/v1/rooms/:id|DELETE|:id - rooms id||Delete the rooms with this Id|
+|/api/v1/users/:id/preferences|POST|:id - user id<br>[Preferences object](#preference-document)|[Preferences object](#preference-document)|Update preferences for user with this Id|
+|/api/v1/rooms|POST|[Room object](#room-document)|[Room object with a Id](#room-document)|Create a new room|
+|/api/v1/rooms/:id|GET|:id - room id|[Room object](#room-document)|Retrieve a room with this Id|
+|/api/v1/rooms/:id|PUT|:id - room id|[Room object](#room-document)|Update the room with this Id|
+|/api/v1/rooms/:id|DELETE|:id - room id||Delete the room with this Id|
 |/api/v1/publish|POST|[Sensor data](#sensor-data)||Publish a sensor reading|
 
 ## Data exemples
@@ -48,7 +48,7 @@ API that will be accessed by the mobile application for get contexts datas and a
     "id": 1,
     "name": "Lab Aula",
     "description": "Laboratório de aula do GREat",
-    "reference": "Perto de algum lugar no térrio",
+    "reference": "Perto de algum lugar no térreo",
     "photoUrl": "https://placehold.it/400",
     "address": "Rua dos Bobos, 0, Fortaleza - CE",
     "attributes": [
