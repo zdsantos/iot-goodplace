@@ -48,7 +48,7 @@ API that will be accessed by the mobile application for get contexts datas and a
     "id": 1,
     "name": "Lab Aula",
     "description": "Laboratório de aula do GREat",
-    "reference": "Perto de algum lugar no térrio",
+    "reference": "Perto de algum lugar no térreo",
     "photoUrl": "https://placehold.it/400",
     "address": "Rua dos Bobos, 0, Fortaleza - CE",
     "attributes": [
